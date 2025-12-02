@@ -26,9 +26,9 @@ medlaunch-data-pipeline-bucket/
       └── facility_accreditation_summary/
              └── part-0000.parquet  <-- Athena CTAS output
 
+```
 
 ![Architecture diagram](assets/diagram1.drawio.png)
-```
 ## 1. Input Data Preparation
 provided the JSON inside a .docx file, which cannot be read by Athena.
 Therefore, the JSON was extracted and converted into NDJSON format (newline-delimited JSON), required by Athena’s JSON SerDe.
