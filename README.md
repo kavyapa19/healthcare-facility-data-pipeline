@@ -26,7 +26,7 @@ medlaunch-data-pipeline-bucket/
              └── part-0000.parquet  <-- Athena CTAS output
 
 
-![Architecture diagram](/Users/bharadwaj.vangipuram/Desktop/diagram1.drawio.png)
+![Architecture diagram](assets/diagram1.drawio.png)
 
 ## 1. Input Data Preparation
 provided the JSON inside a .docx file, which cannot be read by Athena.
