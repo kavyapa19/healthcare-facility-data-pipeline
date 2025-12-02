@@ -16,6 +16,7 @@ The final dataset is written to S3 as Parquet
 
 
 ## S3 Directory Structure
+```
 medlaunch-data-pipeline-bucket/
 │
 ├── data/
@@ -27,7 +28,7 @@ medlaunch-data-pipeline-bucket/
 
 
 ![Architecture diagram](assets/diagram1.drawio.png)
-
+```
 ## 1. Input Data Preparation
 provided the JSON inside a .docx file, which cannot be read by Athena.
 Therefore, the JSON was extracted and converted into NDJSON format (newline-delimited JSON), required by Athena’s JSON SerDe.
