@@ -38,10 +38,12 @@ aws s3 cp facilities.jsonl s3://medlaunch-data-pipeline-bucket/data/
 
 
 ## 2. Create Athena Database
-
+```
 CREATE DATABASE IF NOT EXISTS healthcare_facility_db;
+```
 
 ## 3. Create Athena External Table for Raw JSON
+```
 CREATE EXTERNAL TABLE IF NOT EXISTS healthcare_facility_db.facilities_raw (
   facility_id   string,
   facility_name string,
@@ -74,15 +76,15 @@ WITH SERDEPROPERTIES (
 LOCATION 's3://medlaunch-data-pipeline-bucket/data/'
 TBLPROPERTIES ('has_encrypted_data'='false');
 
-
+```
 ## 4. Validate the Data Load
-
+```
 Confirm rows are visible in Athena:
 SELECT * 
 FROM healthcare_facility_db.facilities_raw
 LIMIT 5;
 
-
+```
 ## 5. Stage-1 Transformation Query
 
 Calculate:
@@ -90,7 +92,7 @@ Calculate:
 * number of services offered
 
 * earliest accreditation expiry date
-
+```
 SELECT
   f.facility_id,
   f.facility_name,
@@ -107,9 +109,10 @@ GROUP BY
   cardinality(f.services)
 ORDER BY
   f.facility_id;
-
+```
 
 ## 6. Create Final Parquet Output Table (CTAS)
+```
 CREATE TABLE healthcare_facility_db.facility_accreditation_summary
 WITH (
   format = 'PARQUET',
@@ -136,7 +139,7 @@ ORDER BY
 Query the final table:
 SELECT *
 FROM healthcare_facility_db.facility_accreditation_summary;
-
+```
 
 ## 7. Final Outcome
 After completing the above steps:
@@ -150,8 +153,9 @@ SQL transformation computes:
     earliest accreditation expiry
 
 CTAS writes analytics-ready Parquet to:
-
+```bash
 s3://medlaunch-data-pipeline-bucket/results/facility_accreditation_summary/
+
 
 
 
