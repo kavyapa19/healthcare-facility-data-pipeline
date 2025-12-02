@@ -16,7 +16,7 @@ The final dataset is written to S3 as Parquet
 
 
 ## S3 Directory Structure
-```
+'''
 medlaunch-data-pipeline-bucket/
 │
 ├── data/
