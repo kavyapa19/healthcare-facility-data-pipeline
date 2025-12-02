@@ -34,16 +34,18 @@ provided the JSON inside a .docx file, which cannot be read by Athena.
 Therefore, the JSON was extracted and converted into NDJSON format (newline-delimited JSON), required by Athena’s JSON SerDe.
 
 Uploaded JSON file to S3
+```bash
 aws s3 cp facilities.jsonl s3://medlaunch-data-pipeline-bucket/data/
+```
 
 
 ## 2. Create Athena Database
-```
+```sql
 CREATE DATABASE IF NOT EXISTS healthcare_facility_db;
 ```
 
 ## 3. Create Athena External Table for Raw JSON
-```
+```sql
 CREATE EXTERNAL TABLE IF NOT EXISTS healthcare_facility_db.facilities_raw (
   facility_id   string,
   facility_name string,
@@ -78,7 +80,7 @@ TBLPROPERTIES ('has_encrypted_data'='false');
 
 ```
 ## 4. Validate the Data Load
-```
+```sql
 Confirm rows are visible in Athena:
 SELECT * 
 FROM healthcare_facility_db.facilities_raw
@@ -92,7 +94,7 @@ Calculate:
 * number of services offered
 
 * earliest accreditation expiry date
-```
+```sql
 SELECT
   f.facility_id,
   f.facility_name,
@@ -112,7 +114,7 @@ ORDER BY
 ```
 
 ## 6. Create Final Parquet Output Table (CTAS)
-```
+```sql
 CREATE TABLE healthcare_facility_db.facility_accreditation_summary
 WITH (
   format = 'PARQUET',
@@ -155,7 +157,7 @@ SQL transformation computes:
 CTAS writes analytics-ready Parquet to:
 ```bash
 s3://medlaunch-data-pipeline-bucket/results/facility_accreditation_summary/
-
+```
 
 
 
