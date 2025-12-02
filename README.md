@@ -16,7 +16,8 @@ The final dataset is written to S3 as Parquet
 
 
 ## S3 Directory Structure
-'''
+```
+
 medlaunch-data-pipeline-bucket/
 │
 ├── data/
@@ -25,6 +26,7 @@ medlaunch-data-pipeline-bucket/
 └── results/
       └── facility_accreditation_summary/
              └── part-0000.parquet  <-- Athena CTAS output
+```
 
 ```
 
