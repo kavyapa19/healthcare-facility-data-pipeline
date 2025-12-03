@@ -145,6 +145,7 @@ S3:
     "Resource": "arn:aws:s3:::medlaunch-data-pipeline-bucket/lambda-query-results/*"
   }
 ]
+```
 Cloudwatch:
 
 ```json
